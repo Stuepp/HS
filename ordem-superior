@@ -1,0 +1,60 @@
+Funções de Ordem Superior: recebem uma função como argumento
+    Prelurde: map, filter, fold (foldr, foldl)
+
+    map :: (a -> b) -> [a] -> [b]
+    map f xs = [f x | x <- xs]
+
+    soma3 :: Int -> Int
+    soma3 x = 3 + x
+    
+    map soma3 [1..10]
+    map (+3) [1..10]
+    map (\x -> x + 3) [1..10]
+
+    filter :: (a -> Bool) -> [a] -> [b]
+    filter p xs = [x | x <- xs, p x]
+
+    foldr f n [] = n
+    foldr f n (x:xs) = f x (foldr f n xs)
+
+    len xs = foldr (\x y -> 1 + y) 0 xs
+
+    plus1 _ y = 1 + y
+    len'' xs = foldr plus1 0 xs
+
+    -- [1,2,3,4,5] => [1,1,1,1,1]
+    len''' xs = foldr (+) 0 (map xs (\x -> 1) xs)
+
+    foldr f n [] = n
+    foldr f n (x:xs) = f x (foldr f n xs)
+
+    elem' :: a -> [a] -> Bool
+    elem' y ys = foldr (\x ac -> if x == y then  True else ac) False ys
+
+    3 [1,2,3,4,5] => True
+    10 [1,2,3,4,5] => False
+
+    somatorio xs = foldr (+) 0 xs
+    produtorio xs = foldr (*) 1 xs
+
+
+    Ex: Função que recebe uma lista de listas - [[1,2], [10,11,12], [20]],
+    retorna uma única lista utilizando foldr
+    
+    listtolist [[1,2], [10,11,12], [20]] => [1,2,10,11,12,20]
+
+    listtolist xs = foldr (++) [] xs
+
+    Implementar map utilizando fold
+    map' :: (a -> b) -> [a] -> [b]
+    map' f xs = foldr (\x ac -> f x : ac) [] xs
+
+    //qual a diferença de foldr e foldl?
+
+    2.
+    let contaPalavras xs = zip xs (map lenght xs)
+    //
+    [(a,b) | a <- [1..3], b <- [1..3]]
+
+    pares n = filter (\(x,y) -> x /= y) ([(a,b) | a <- [1..n], b <- [1..n]])
+    

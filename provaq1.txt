@@ -1,0 +1,27 @@
+a)
+    fib 0 = 0 -> caso o número recebido seja 0 retorne 0
+    fib 1 = 1 -> caso o vnúmero recebido seja 1 retorne 1
+    fib n = fib (n-1) + fib (n-2) ->  para n diferente de 1 e 0 retorne (n-1)  + (n-2)
+
+b)
+    len xs = foldr (\x y -> 1 + y) 0 xs
+    
+    para >> len [2,8,5,10,28]
+
+    -> len recebe uma lista, onde retorna seu tamanho, isso ocorre graças ao foldr
+    -> onde y = 0, que recebe +1, para cada elemento da lista percorrido, e como foldr
+    -> já percorre a lista do inicio até o final e para, e nos retorna o resultado da função de foldr
+    -> em relação com a lista e o número, nesse caso (\x y -> 1 + y), onde y é 0 e recebe 1 + y toda
+    -> vez que foldr percorre um elemento da lista.
+
+c)
+    appFoldl f e xs = foldl f e xs
+
+    para >> appFoldl (++) [] [[28,10,12],[1,4,6],[],[1,9]]
+
+    -> appFoldl recebe uma operação de concatenação uma lista vazia e uma lista de listas
+    -> retornado foldl executando a concatenação da lista vazia e a lista de listas
+    -> onde foldl ira concatenar cada elemento da lista vazia com a lista de listas
+    -> assim retornando apenas um lista sem listas dentro ou listas vazias
+    -> em outras palavras irá transformar a lista de listas em uma única lista
+    -> sem elementos vazios ou listas vazias.
